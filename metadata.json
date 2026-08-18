@@ -1,0 +1,6 @@
+{
+  "name": "Mother Dairy Sales System",
+  "description": "Mother Dairy Sales Order, Route, Party, Billing & Analytics Management System",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

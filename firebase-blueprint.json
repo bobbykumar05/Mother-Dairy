@@ -1,0 +1,225 @@
+{
+  "entities": {
+    "users": {
+      "title": "User Profile",
+      "description": "User account profiles for Sales Representatives, Managers, and Admins",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string", "enum": ["ADMIN", "MANAGER", "SALES"] },
+        "phone": { "type": "string" },
+        "active": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "name", "role"]
+    },
+    "activityLogs": {
+      "title": "Activity Log",
+      "description": "System activity logs tracking Sales and Manager actions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userRole": { "type": "string" },
+        "action": { "type": "string" },
+        "details": { "type": "string" },
+        "module": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["action", "userName", "timestamp"]
+    },
+    "products": {
+      "title": "Product",
+      "description": "Catalog of Mother Dairy products and special schemes",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "sku": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "packSize": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "piecesPerCase": { "type": "number" },
+        "mrp": { "type": "number" },
+        "ptr": { "type": "number" },
+        "ptrMargin": { "type": "number" },
+        "casePtr": { "type": "number" },
+        "active": { "type": "boolean" },
+        "hasOffer": { "type": "boolean" },
+        "offerTitle": { "type": "string" },
+        "offerType": { "type": "string" },
+        "offerDetails": { "type": "string" }
+      },
+      "required": ["sku", "name", "category", "mrp", "ptr"]
+    },
+    "parties": {
+      "title": "Party / Outlet",
+      "description": "Retail stores and distributors",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "contactPerson": { "type": "string" },
+        "phone": { "type": "string" },
+        "address": { "type": "string" },
+        "routeId": { "type": "string" },
+        "routeName": { "type": "string" },
+        "active": { "type": "boolean" }
+      },
+      "required": ["name", "routeId"]
+    },
+    "orders": {
+      "title": "Order",
+      "description": "Sales orders recorded by Sales or Managers",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "orderNumber": { "type": "string" },
+        "partyId": { "type": "string" },
+        "partyName": { "type": "string" },
+        "salespersonId": { "type": "string" },
+        "salespersonName": { "type": "string" },
+        "grandTotal": { "type": "number" },
+        "paymentStatus": { "type": "string" },
+        "deliveryStatus": { "type": "string" },
+        "date": { "type": "string" }
+      },
+      "required": ["partyId", "partyName", "grandTotal"]
+    },
+    "visits": {
+      "title": "Outlet Visit",
+      "description": "Sales and Manager market visits",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "partyId": { "type": "string" },
+        "partyName": { "type": "string" },
+        "salespersonId": { "type": "string" },
+        "salespersonName": { "type": "string" },
+        "salespersonRole": { "type": "string" },
+        "visitType": { "type": "string" },
+        "remarks": { "type": "string" },
+        "date": { "type": "string" }
+      },
+      "required": ["partyId", "partyName"]
+    },
+    "expenses": {
+      "title": "Expense Record",
+      "description": "Admin recorded business expenses",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string" },
+        "category": { "type": "string" },
+        "amount": { "type": "number" },
+        "description": { "type": "string" },
+        "createdBy": { "type": "string" },
+        "createdById": { "type": "string" }
+      },
+      "required": ["date", "category", "amount"]
+    },
+    "salaries": {
+      "title": "Salary Record",
+      "description": "Admin recorded employee salary credits",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "amount": { "type": "number" },
+        "creditDate": { "type": "string" },
+        "month": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["userId", "amount", "creditDate"]
+    },
+    "fuelExpenses": {
+      "title": "Fuel Expense Record",
+      "description": "Admin recorded fuel expenses",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string" },
+        "amount": { "type": "number" },
+        "notes": { "type": "string" },
+        "recordedBy": { "type": "string" }
+      },
+      "required": ["date", "amount"]
+    },
+    "routes": {
+      "title": "Delivery Route",
+      "description": "Sales beat routes with scheduled days and store counts",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "code": { "type": "string" },
+        "day": { "type": "string" },
+        "totalShops": { "type": "number" },
+        "active": { "type": "boolean" }
+      },
+      "required": ["name", "code", "day"]
+    },
+    "payments": {
+      "title": "Payment Record",
+      "description": "Payment collection entries for invoices and retailer balance settlements",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "orderId": { "type": "string" },
+        "partyId": { "type": "string" },
+        "partyName": { "type": "string" },
+        "amount": { "type": "number" },
+        "paymentMode": { "type": "string" },
+        "referenceNumber": { "type": "string" },
+        "date": { "type": "string" },
+        "recordedBy": { "type": "string" }
+      },
+      "required": ["partyId", "partyName", "amount", "paymentMode", "date"]
+    },
+    "settings": {
+      "title": "App Settings",
+      "description": "Global distributor and business configurations",
+      "type": "object",
+      "properties": {
+        "businessName": { "type": "string" },
+        "distributorName": { "type": "string" },
+        "phone": { "type": "string" },
+        "whatsappNumber": { "type": "string" },
+        "upiId": { "type": "string" },
+        "payeeName": { "type": "string" },
+        "invoiceFooter": { "type": "string" },
+        "currency": { "type": "string" }
+      }
+    },
+    "priceHistories": {
+      "title": "Price History",
+      "description": "Audit record of product MRP and PTR changes",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "productId": { "type": "string" },
+        "productName": { "type": "string" },
+        "effectiveDate": { "type": "string" }
+      }
+    },
+    "attendance": {
+      "title": "Attendance Record",
+      "description": "Daily employee attendance logs",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userRole": { "type": "string" },
+        "date": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["userId", "date", "status"]
+    }
+  }
+}
